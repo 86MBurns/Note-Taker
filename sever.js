@@ -38,3 +38,17 @@ app.route("/api/notes")
         })
         res.json(newNote);
     })
+
+app.delete("/api/notes", function (req, res) {
+    let jsonPath = path.join(__dirname, "/db/db.json");
+
+    fs.writeFile(jsonPath, JSON.stringify(database),function (err){
+        if (err){
+            return console.log(err);
+        }
+        console.log("note deleted");
+    })
+
+    res.json(database);
+
+})
