@@ -1,17 +1,13 @@
-const express = require('express');
-const path = require('path');
+const express = require("express");
+const fs = require("fs");
+const path = require("path");
+const database = require("./db/db");
 
-const app = express();
-const PORT = 3001;
+var app = express();
+var PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
 
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/', htmlRoutes);
-
-app.use('/api', apiRoutes);
-
-app.listen(PORT, ()=> {
-    console.log(`serever on port ${PORT}`)
-});
